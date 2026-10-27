@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Armando_Dev | Welcome</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#000;
+  --navy:#020b24;
+  --blue:#0a2a6b;
+  --electric:#2f7bff;
+  --cyan:#5ee1ff;
+  --text:#d6e2ff;
+  --muted:#7f93c4;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Space Grotesk',system-ui,sans-serif;
+  color:var(--text);
+  background:linear-gradient(160deg,var(--black),var(--navy) 45%,var(--blue) 100%) fixed;
+  background-size:200% 200%;
+  animation:bgShift 18s ease-in-out infinite alternate;
+  min-height:100vh;
+  overflow-x:hidden;
+  line-height:1.6;
+}
+@keyframes bgShift{from{background-position:0% 0%}to{background-position:100% 100%}}
+
+/* moving grid */
+.grid{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(47,123,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(47,123,255,.12) 1px,transparent 1px);
+  background-size:48px 48px;
+  mask-image:radial-gradient(ellipse at center,#000 20%,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse at center,#000 20%,transparent 75%);
+  animation:gridMove 6s linear infinite}
+@keyframes gridMove{to{background-position:48px 48px}}
+
+/* glowing orbs */
+.orb{position:fixed;border-radius:50%;filter:blur(70px);z-index:0;pointer-events:none;opacity:.55}
+.o1{width:380px;height:380px;background:var(--electric);top:-100px;left:-80px;animation:float1 14s ease-in-out infinite}
+.o2{width:320px;height:320px;background:#1236a8;bottom:-80px;right:-60px;animation:float2 17s ease-in-out infinite}
+.o3{width:220px;height:220px;background:var(--cyan);top:45%;left:60%;opacity:.22;animation:float1 21s ease-in-out infinite reverse}
+@keyframes float1{50%{transform:translate(120px,90px) scale(1.2)}}
+@keyframes float2{50%{transform:translate(-140px,-70px) scale(.85)}}
+
+/* rising particles */
+.particles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.particles i{position:absolute;bottom:-10px;width:3px;height:3px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);opacity:0;animation:rise linear infinite}
+@keyframes rise{0%{transform:translateY(0);opacity:0}10%{opacity:.9}100%{transform:translateY(-105vh);opacity:0}}
+
+main{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:0 24px}
+
+/* hero */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;gap:22px}
+.hello{font-family:'JetBrains Mono',monospace;color:var(--cyan);font-size:1rem;
+  opacity:0;animation:fadeIn .8s .2s forwards}
+.name{
+  font-size:clamp(2.8rem,11vw,7.5rem);font-weight:700;letter-spacing:-.03em;line-height:1;
+  color:#fff;position:relative;display:inline-block;
+  text-shadow:0 0 12px rgba(47,123,255,.9),0 0 40px rgba(47,123,255,.6),0 0 90px rgba(47,123,255,.4);
+  animation:neon 3.5s ease-in-out infinite alternate;
+}
+.name::before,.name::after{content:attr(data-text);position:absolute;inset:0;overflow:hidden;opacity:.8}
+.name::before{color:var(--cyan);text-shadow:none;animation:glitchA 4s infinite steps(1);clip-path:inset(0 0 60% 0)}
+.name::after{color:#4d6bff;text-shadow:none;animation:glitchB 4s infinite steps(1);clip-path:inset(60% 0 0 0)}
+@keyframes neon{from{text-shadow:0 0 10px rgba(47,123,255,.8),0 0 30px rgba(47,123,255,.5)}to{text-shadow:0 0 18px rgba(94,225,255,.95),0 0 60px rgba(47,123,255,.8),0 0 110px rgba(47,123,255,.5)}}
+@keyframes glitchA{0%,90%,100%{transform:translate(0);opacity:0}91%{transform:translate(-5px,2px);opacity:.8}94%{transform:translate(4px,-2px);opacity:.8}97%{transform:translate(-3px,0);opacity:.8}}
+@keyframes glitchB{0%,92%,100%{transform:translate(0);opacity:0}93%{transform:translate(5px,-2px);opacity:.8}96%{transform:translate(-4px,2px);opacity:.8}98%{transform:translate(3px,0);opacity:.8}}
+.cursor{display:inline-block;width:.08em;height:.85em;background:var(--cyan);margin-left:.08em;vertical-align:-.05em;animation:blink 1s steps(1) infinite;box-shadow:0 0 12px var(--cyan)}
+@keyframes blink{50%{opacity:0}}
+.tagline{font-size:clamp(1.1rem,2.6vw,1.6rem);max-width:640px;color:var(--text);opacity:0;animation:fadeIn .9s 1s forwards}
+.tagline b{color:var(--cyan);font-weight:600}
+@keyframes fadeIn{to{opacity:1}}
+.cta{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeIn .9s 1.4s forwards}
+.btn{position:relative;overflow:hidden;padding:13px 26px;border-radius:999px;text-decoration:none;font-weight:600;color:#fff;border:1px solid var(--electric);background:rgba(47,123,255,.15);transition:transform .25s,box-shadow .25s}
+.btn::after{content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);animation:shine 3.5s infinite}
+@keyframes shine{40%,100%{left:160%}}
+.btn:hover{transform:translateY(-3px);box-shadow:0 0 28px rgba(47,123,255,.7)}
+.btn.solid{background:var(--electric)}
+.scroll{position:absolute;bottom:28px;left:50%;width:22px;height:36px;border:2px solid var(--muted);border-radius:12px;transform:translateX(-50%)}
+.scroll::after{content:"";position:absolute;left:50%;top:6px;width:4px;height:8px;border-radius:2px;background:var(--cyan);transform:translateX(-50%);animation:wheel 1.6s infinite}
+@keyframes wheel{to{transform:translate(-50%,14px);opacity:0}}
+
+/* sections */
+section{padding:90px 0}
+h2{font-size:clamp(1.8rem,5vw,2.8rem);margin-bottom:28px;letter-spacing:-.02em;color:#fff}
+
+/* terminal */
+.term{background:rgba(0,0,0,.65);border:1px solid rgba(47,123,255,.45);border-radius:14px;box-shadow:0 0 40px rgba(47,123,255,.2);overflow:hidden;backdrop-filter:blur(6px);animation:pulseBox 5s ease-in-out infinite}
+@keyframes pulseBox{50%{box-shadow:0 0 60px rgba(47,123,255,.4)}}
+.bar{display:flex;gap:8px;padding:12px 16px;background:rgba(10,42,107,.45)}
+.bar i{width:12px;height:12px;border-radius:50%;background:#ff5f57}
+.bar i:nth-child(2){background:#febc2e}.bar i:nth-child(3){background:#28c840}
+.code{padding:24px;font-family:'JetBrains Mono',monospace;font-size:clamp(.82rem,2vw,1rem);display:grid;gap:8px}
+.line{white-space:nowrap;overflow:hidden;width:0;border-right:2px solid var(--cyan);animation:type 2.2s steps(48,end) forwards,caret .6s steps(1) 4}
+.line:nth-child(1){animation-delay:.2s,.2s}
+.line:nth-child(2){animation-delay:2.6s,2.6s}
+.line:nth-child(3){animation-delay:5s,5s}
+.line:nth-child(4){animation-delay:7.4s,7.4s}
+.line:nth-child(5){animation-delay:9.8s,9.8s;animation-fill-mode:forwards}
+@keyframes type{to{width:100%}}
+@keyframes caret{50%{border-color:transparent}}
+.line:last-child{animation:type 2.2s 9.8s steps(48,end) forwards,caretEnd .6s 9.8s steps(1) infinite}
+@keyframes caretEnd{50%{border-color:transparent}}
+.k{color:var(--cyan)}.s{color:#9db8ff}.c{color:var(--muted)}
+
+/* marquee */
+.marquee{position:relative;overflow:hidden;border-block:1px solid rgba(47,123,255,.35);padding:18px 0;background:rgba(2,11,36,.6)}
+.track{display:flex;gap:44px;width:max-content;animation:scrollX 32s linear infinite;font-family:'JetBrains Mono',monospace;font-size:1.05rem;color:var(--cyan)}
+.track span::before{content:"{ }";color:var(--electric);margin-right:12px}
+.marquee:hover .track{animation-play-state:paused}
+@keyframes scrollX{to{transform:translateX(-50%)}}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:14px}
+.chip{padding:11px 20px;border-radius:12px;border:1px solid rgba(47,123,255,.5);background:rgba(10,42,107,.35);font-weight:600;animation:bob 4s ease-in-out infinite;transition:background .25s,box-shadow .25s,color .25s}
+.chip:nth-child(2n){animation-delay:-1s}.chip:nth-child(3n){animation-delay:-2s}.chip:nth-child(5n){animation-delay:-3s}
+.chip:hover{background:var(--electric);color:#fff;box-shadow:0 0 24px var(--electric)}
+@keyframes bob{50%{transform:translateY(-9px)}}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px}
+.card{position:relative;padding:28px;border-radius:18px;background:rgba(2,11,36,.75);border:1px solid rgba(47,123,255,.3);overflow:hidden;transition:transform .3s}
+.card::before{content:"";position:absolute;inset:-2px;z-index:-1;border-radius:20px;background:conic-gradient(from 0deg,transparent,var(--electric),var(--cyan),transparent 40%);animation:spin 6s linear infinite}
+.card::after{content:"";position:absolute;inset:1px;z-index:-1;border-radius:17px;background:#030c26}
+.card{z-index:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.card:hover{transform:translateY(-6px) scale(1.02)}
+.card h3{color:var(--cyan);margin-bottom:8px;font-size:1.2rem}
+.card p{color:var(--muted)}
+
+footer{text-align:center;padding:60px 0 80px;color:var(--muted);font-family:'JetBrains Mono',monospace}
+footer strong{color:#fff;animation:neon 3.5s ease-in-out infinite alternate}
+
+/* reveal on scroll */
+.rv{opacity:0;transform:translateY(30px);transition:opacity .9s,transform .9s}
+.rv.show{opacity:1;transform:none}
+
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}
+  .line{width:100%}.rv,.hello,.tagline,.cta{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+<div class="particles" id="particles"></div>
+
+<main>
+  <header class="hero">
+    <p class="hello">&gt; hello_world();  // welcome to my GitHub</p>
+    <h1 class="name" data-text="Armando_Dev">Armando_Dev<span class="cursor"></span></h1>
+    <p class="tagline">Web developer from South Africa. I build <b>fast React interfaces</b>, automate workflows, and keep systems <b>secure and compliant</b>.</p>
+    <div class="cta">
+      <a class="btn solid" href="#projects">See what I build</a>
+      <a class="btn" href="#stack">My tech stack</a>
+    </div>
+    <div class="scroll" aria-hidden="true"></div>
+  </header>
+
+  <section class="rv">
+    <h2>About me</h2>
+    <div class="term" role="img" aria-label="Terminal describing Armando_Dev">
+      <div class="bar"><i></i><i></i><i></i></div>
+      <div class="code">
+        <div class="line"><span class="k">$</span> whoami</div>
+        <div class="line"><span class="s">Armando_Dev</span> <span class="c">// web dev + IT governance</span></div>
+        <div class="line"><span class="k">$</span> cat stack.txt</div>
+        <div class="line"><span class="s">React · Vite · WordPress · SharePoint</span></div>
+        <div class="line"><span class="k">$</span> status <span class="c">// always shipping_</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>React</span><span>Vite</span><span>JavaScript</span><span>HTML5</span><span>CSS3</span><span>Responsive UI</span><span>REST APIs</span><span>Git</span><span>CI/CD</span><span>WordPress</span><span>SharePoint</span><span>Power Automate</span><span>ISO 27001</span><span>POPIA</span><span>Cybersecurity</span><span>Photoshop</span>
+    <span>React</span><span>Vite</span><span>JavaScript</span><span>HTML5</span><span>CSS3</span><span>Responsive UI</span><span>REST APIs</span><span>Git</span><span>CI/CD</span><span>WordPress</span><span>SharePoint</span><span>Power Automate</span><span>ISO 27001</span><span>POPIA</span><span>Cybersecurity</span><span>Photoshop</span>
+  </div>
+</div>
+
+<main>
+  <section id="stack" class="rv">
+    <h2>Tech stack</h2>
+    <div class="chips">
+      <span class="chip">React</span><span class="chip">Vite</span><span class="chip">JavaScript</span><span class="chip">HTML &amp; CSS</span><span class="chip">WordPress</span><span class="chip">Git &amp; GitHub</span><span class="chip">SharePoint</span><span class="chip">Power Automate</span><span class="chip">Power BI</span><span class="chip">Photoshop</span>
+    </div>
+  </section>
+
+  <section id="projects" class="rv">
+    <h2>What I do</h2>
+    <div class="cards">
+      <div class="card"><h3>Web development</h3><p>Responsive, animated React and WordPress sites that load fast and look sharp.</p></div>
+      <div class="card"><h3>Automation</h3><p>Power Automate flows and SharePoint lists that remove repetitive work.</p></div>
+      <div class="card"><h3>Security &amp; compliance</h3><p>ISO 27001 ISMS, IT governance and POPIA-aware practices that keep data safe.</p></div>
+    </div>
+  </section>
+
+  <section class="rv">
+    <h2>Languages I speak</h2>
+    <div class="chips">
+      <span class="chip">English</span><span class="chip">Portuguese</span><span class="chip">Zulu</span><span class="chip">French</span><span class="chip">Tswana</span><span class="chip">Afrikaans</span>
+    </div>
+  </section>
+
+  <footer>
+    <p>Thanks for stopping by. Built with HTML &amp; CSS by <strong>Armando_Dev</strong></p>
+  </footer>
+</main>
+
+<script>
+// rising particles
+const p=document.getElementById('particles');
+for(let i=0;i<28;i++){
+  const d=document.createElement('i');
+  d.style.left=Math.random()*100+'%';
+  d.style.animationDuration=(8+Math.random()*12)+'s';
+  d.style.animationDelay=(-Math.random()*20)+'s';
+  d.style.width=d.style.height=(2+Math.random()*3)+'px';
+  p.appendChild(d);
+}
+// scroll reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
